@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+require 'MineralIndex'
+
+# Run this file to display the Mineral Price List for Jita (The Forge)
+mi = MineralIndex.new
+mi.loadData
+mi.display
