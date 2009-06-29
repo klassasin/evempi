@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require 'MineralIndex'
+
+mi = MineralIndex.new
+mi.loadData
+mi.display
