@@ -2,15 +2,18 @@ require 'rubygems'
 require 'fastercsv'
 require 'net/http'
 require 'uri'
-require 'pp'
-
+#
+#	MineralIndex:  Handles the downloading of the CSV Mineral Index file as well as its parsing and display
+#
 class MineralIndex
+	# Set the URL for Jita (The Forge) Mineral Price Information
 	def initialize	
 		@url = "http://www.eve-factory.com/thmi/thmi-api.php?region=10000002&system=30000142&pricetype=ask&export=csv"
 		@index = Hash.new
 		@dates = Array.new
 	end
 
+	# Download the CSV file and parse it into a hash with the key as the mineral name and the value as the price.
 	def loadData
 		begin
 			s = Net::HTTP::get URI::parse(@url)
@@ -40,10 +43,12 @@ class MineralIndex
 		end
 	end
 
+	# Return the latest date for which the prices were fetched (dates from CSV file)
 	def dts
 		return @dates.sort!.last
 	end
 
+	# Display the Mineral Price Index
 	def display
 		puts "--- Mineral Price Index ---\n\n"
 		@index.sort{|a,b| a[1]<=>b[1]}.each { |mineral, price| 
