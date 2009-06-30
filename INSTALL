@@ -1,8 +1,0 @@
-Requirements:
-
-	FasterCSV	(http://fastercsv.rubyforge.org/)
-
-How to Install:
-
-	sudo gem install fastercsv
-
