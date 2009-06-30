@@ -1,8 +1,31 @@
-Usage:
+= EVE MPI:  Mineral Price Index
 
-	./mpi
+MPI is a small ruby script which downloads, parses, and displays the most recent price list for minerals in Jita (The Forge) for the game, EVE Online.
 
-What'll it do:
+== License
 
-	[M]ineral [P]rice [I]ndex will list the mineral prices.
+Mongrel is copyright 2009 Kevin Laborda.  It is licensed under GPL2.  See the included LICENSE file for details
 
+== Quick Start
+
+The quickest way to get started with MPI is to first download the prerequisite FasterCSV gem.
+
+ $ sudo gem install fastercsv
+
+Once installed, the script can be run with the following
+
+ $ ./mpi
+
+== Install
+
+As stated, the only required library is FasterCSV.  The easiest way to install is via RubyGems.
+
+== Usage
+
+There are no arguments for this script, so the following is all that is needed.
+
+ $ ./mpi
+
+== Contact
+
+E-mail me at klaborda<at>gmail<dot>com for any questions, comments, or bugs.
