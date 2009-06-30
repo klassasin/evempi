@@ -4,7 +4,7 @@ MPI is a small ruby script which downloads, parses, and displays the most recent
 
 == License
 
-Mongrel is copyright 2009 Kevin Laborda.  It is licensed under GPL2.  See the included LICENSE file for details
+MPI is copyright 2009 Kevin Laborda.  It is licensed under GPL2.  See the included LICENSE file for details
 
 == Quick Start
 
