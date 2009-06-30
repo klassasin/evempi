@@ -9,6 +9,7 @@ class MineralIndex
 	# Set the URL for Jita (The Forge) Mineral Price Information
 	def initialize	
 		@url = "http://www.eve-factory.com/thmi/thmi-api.php?region=10000002&system=30000142&pricetype=ask&export=csv"
+		@storage = "mpi.yml"
 		@index = Hash.new
 		@dates = Array.new
 	end
@@ -43,6 +44,28 @@ class MineralIndex
 		end
 	end
 
+	def genPercentDiff
+		return if !File.exists?(@storage)
+		retrieveIndex if @index_cmp.nil?
+		@percentDiff = Hash.new
+		@index.each { |min, price|
+			pct = ((price - @index_cmp[min])/(price))*100
+			@percentDiff[min] = pct
+		}	
+	end
+
+	def today
+		Time.now.localtime.strftime("%Y-%m-%d")
+	end
+
+	def storeIndex
+		File.open(@storage,'w') { |f| YAML::dump(@index, f) }
+	end
+
+	def retrieveIndex
+		@index_cmp = YAML.load_file(@storage) if File.exists?(@storage)
+	end
+
 	# Return the latest date for which the prices were fetched (dates from CSV file)
 	def dts
 		return @dates.sort!.last
@@ -50,10 +73,19 @@ class MineralIndex
 
 	# Display the Mineral Price Index
 	def display
+		genPercentDiff
+		fallback = !@percentDiff.nil?
+		storeIndex
+
 		puts "--- Mineral Price Index ---\n\n"
 		@index.sort{|a,b| a[1]<=>b[1]}.each { |mineral, price| 
-			printf "%10s %8.2f\n", mineral, price
+			if fallback
+				printf "%10s %8.2f %6.2f\%\n", mineral, price, @percentDiff[mineral]
+			else
+				printf "%10s %8.2f\n", mineral, price
+			end
 		}
 		puts "\n--- #{self.dts} ---"			
+
 	end
 end

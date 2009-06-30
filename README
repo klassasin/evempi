@@ -2,6 +2,9 @@
 
 MPI is a small ruby script which downloads, parses, and displays the most recent price list for minerals in Jita (The Forge) for the game, EVE Online.
 
+A small file (mpi.yml) will be written to the script's directory with the downloaded prices.  The next time MPI is ran, the percent change in mineral
+prices will be displayed.
+
 == License
 
 MPI is copyright 2009 Kevin Laborda.  It is licensed under GPL2.  See the included LICENSE file for details
@@ -25,6 +28,7 @@ As stated, the only required library is FasterCSV.  The easiest way to install i
 There are no arguments for this script, so the following is all that is needed.
 
  $ ./mpi
+
 
 == Contact
 
